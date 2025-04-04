@@ -104,8 +104,20 @@ class ResultScreen extends StatelessWidget {
               const SizedBox(height: 16),
               if (result.isWebUrl)
                 ElevatedButton.icon(
-                  onPressed: () {
-                    UrlUtils.launchURL(result.content);
+                  onPressed: () async {
+                    final launchResult =
+                        await UrlUtils.launchURL(result.content);
+                    if (!launchResult.success) {
+                      if (context.mounted) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text(launchResult.errorMessage ??
+                                localization.translate('errorOpeningUrl')),
+                            duration: const Duration(seconds: 3),
+                          ),
+                        );
+                      }
+                    }
                   },
                   icon: const Icon(Icons.open_in_browser),
                   label: Text(localization.translate('openInBrowser')),

@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import '../providers/language_provider.dart';
 import '../providers/theme_provider.dart';
 import '../services/localization_service.dart';
+import 'legal_screen.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});
@@ -86,7 +87,7 @@ class SettingsScreen extends StatelessWidget {
                 ),
                 const Divider(),
                 RadioListTile<Locale>(
-                  title: const Text('English'),
+                  title: Text(localization.translate('english')),
                   value: const Locale('en'),
                   groupValue: languageProvider.locale,
                   onChanged: (value) {
@@ -99,7 +100,7 @@ class SettingsScreen extends StatelessWidget {
                   ),
                 ),
                 RadioListTile<Locale>(
-                  title: const Text('العربية'),
+                  title: Text(localization.translate('arabic')),
                   value: const Locale('ar'),
                   groupValue: languageProvider.locale,
                   onChanged: (value) {
@@ -132,14 +133,17 @@ class SettingsScreen extends StatelessWidget {
                   leading: const Icon(Icons.info),
                 ),
                 ListTile(
-                  title: Text(localization.translate('privacyPolicy')),
-                  leading: const Icon(Icons.privacy_tip),
-                  onTap: () {},
-                ),
-                ListTile(
-                  title: Text(localization.translate('termsOfService')),
-                  leading: const Icon(Icons.description),
-                  onTap: () {},
+                  title: Text(localization.translate('legal')),
+                  leading: const Icon(Icons.gavel),
+                  trailing: const Icon(Icons.arrow_forward_ios, size: 16),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const LegalScreen(),
+                      ),
+                    );
+                  },
                 ),
               ],
             ),

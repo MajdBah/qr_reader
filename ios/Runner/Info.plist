@@ -49,5 +49,10 @@
 	<string>يحتاج التطبيق إلى استخدام الكاميرا لمسح رموز QR</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>يحتاج التطبيق إلى الوصول إلى المكتبة لمسح رموز QR من الصور المحفوظة</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>http</string>
+		<string>https</string>
+	</array>
 </dict>
 </plist>
